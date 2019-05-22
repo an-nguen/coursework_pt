@@ -14,7 +14,7 @@ namespace TP_coursework
 {
     public partial class MainForm : Form
     {
-        // Поля показывают правильность заполнения полей ФИО
+        // Свойства показывают правильность заполнения полей
         private bool reqFieldsIsValid = false;
         private bool nreqFieldsIsValid = false;
 

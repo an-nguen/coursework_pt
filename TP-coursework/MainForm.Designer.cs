@@ -30,12 +30,12 @@
         {
             this.buttonNext = new System.Windows.Forms.Button();
             this.buttonExit = new System.Windows.Forms.Button();
+            this.labelData = new System.Windows.Forms.Label();
             this.maskedFieldUniversity = new TP_coursework.MaskedField();
             this.maskedFieldPhone = new TP_coursework.MaskedField();
             this.maskedFieldMidName = new TP_coursework.MaskedField();
             this.maskedFieldName = new TP_coursework.MaskedField();
             this.maskedFieldLastName = new TP_coursework.MaskedField();
-            this.labelData = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // buttonNext
@@ -68,14 +68,26 @@
             this.buttonExit.UseVisualStyleBackColor = false;
             this.buttonExit.Click += new System.EventHandler(this.ButtonExit_Click);
             // 
+            // labelData
+            // 
+            this.labelData.AutoSize = true;
+            this.labelData.BackColor = System.Drawing.Color.Transparent;
+            this.labelData.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelData.ForeColor = System.Drawing.SystemColors.Control;
+            this.labelData.Location = new System.Drawing.Point(143, 158);
+            this.labelData.Name = "labelData";
+            this.labelData.Size = new System.Drawing.Size(223, 37);
+            this.labelData.TabIndex = 8;
+            this.labelData.Text = "Ваши данные:";
+            // 
             // maskedFieldUniversity
             // 
             this.maskedFieldUniversity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.maskedFieldUniversity.AsciiOnly = false;
             this.maskedFieldUniversity.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.maskedFieldUniversity.BackColor = System.Drawing.Color.Transparent;
-            this.maskedFieldUniversity.BackColorFieldName = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.maskedFieldUniversity.ForeColorFieldName = System.Drawing.Color.Empty;
+            this.maskedFieldUniversity.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.maskedFieldUniversity.TextColor = System.Drawing.Color.Empty;
             this.maskedFieldUniversity.InputMaskFormat = "";
             this.maskedFieldUniversity.Location = new System.Drawing.Point(150, 371);
             this.maskedFieldUniversity.Margin = new System.Windows.Forms.Padding(5);
@@ -91,8 +103,8 @@
             this.maskedFieldPhone.AsciiOnly = false;
             this.maskedFieldPhone.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.maskedFieldPhone.BackColor = System.Drawing.Color.Transparent;
-            this.maskedFieldPhone.BackColorFieldName = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.maskedFieldPhone.ForeColorFieldName = System.Drawing.Color.Empty;
+            this.maskedFieldPhone.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.maskedFieldPhone.TextColor = System.Drawing.Color.Empty;
             this.maskedFieldPhone.InputMaskFormat = "+70000000000";
             this.maskedFieldPhone.Location = new System.Drawing.Point(150, 331);
             this.maskedFieldPhone.Margin = new System.Windows.Forms.Padding(5);
@@ -108,7 +120,8 @@
             this.maskedFieldMidName.AsciiOnly = false;
             this.maskedFieldMidName.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.maskedFieldMidName.BackColor = System.Drawing.Color.Transparent;
-            this.maskedFieldMidName.ForeColorFieldName = System.Drawing.Color.Empty;
+            this.maskedFieldMidName.BackgroundColor = System.Drawing.Color.Empty;
+            this.maskedFieldMidName.TextColor = System.Drawing.Color.Empty;
             this.maskedFieldMidName.InputMaskFormat = "";
             this.maskedFieldMidName.Location = new System.Drawing.Point(150, 291);
             this.maskedFieldMidName.Margin = new System.Windows.Forms.Padding(5);
@@ -124,8 +137,8 @@
             this.maskedFieldName.AsciiOnly = false;
             this.maskedFieldName.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.maskedFieldName.BackColor = System.Drawing.Color.Transparent;
-            this.maskedFieldName.BackColorFieldName = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.maskedFieldName.ForeColorFieldName = System.Drawing.Color.Empty;
+            this.maskedFieldName.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.maskedFieldName.TextColor = System.Drawing.Color.Empty;
             this.maskedFieldName.InputMaskFormat = "";
             this.maskedFieldName.Location = new System.Drawing.Point(150, 251);
             this.maskedFieldName.Margin = new System.Windows.Forms.Padding(5);
@@ -141,8 +154,8 @@
             this.maskedFieldLastName.AsciiOnly = false;
             this.maskedFieldLastName.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.maskedFieldLastName.BackColor = System.Drawing.Color.Transparent;
-            this.maskedFieldLastName.BackColorFieldName = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.maskedFieldLastName.ForeColorFieldName = System.Drawing.Color.Empty;
+            this.maskedFieldLastName.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.maskedFieldLastName.TextColor = System.Drawing.Color.Empty;
             this.maskedFieldLastName.InputMaskFormat = "";
             this.maskedFieldLastName.Location = new System.Drawing.Point(150, 211);
             this.maskedFieldLastName.Margin = new System.Windows.Forms.Padding(5);
@@ -152,23 +165,12 @@
             this.maskedFieldLastName.TabIndex = 1;
             this.maskedFieldLastName.TextFieldName = "Фамилия";
             // 
-            // labelData
-            // 
-            this.labelData.AutoSize = true;
-            this.labelData.BackColor = System.Drawing.Color.Transparent;
-            this.labelData.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelData.ForeColor = System.Drawing.SystemColors.Control;
-            this.labelData.Location = new System.Drawing.Point(143, 158);
-            this.labelData.Name = "labelData";
-            this.labelData.Size = new System.Drawing.Size(223, 37);
-            this.labelData.TabIndex = 8;
-            this.labelData.Text = "Ваши данные:";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::TP_coursework.Properties.Resources.ulyanovsk_politeh_blurred;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1008, 687);
             this.Controls.Add(this.labelData);
             this.Controls.Add(this.maskedFieldUniversity);
@@ -178,7 +180,7 @@
             this.Controls.Add(this.maskedFieldMidName);
             this.Controls.Add(this.maskedFieldName);
             this.Controls.Add(this.maskedFieldLastName);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MinimumSize = new System.Drawing.Size(1024, 726);
             this.Name = "MainForm";
             this.Text = "App - Соц.опрос студентов";

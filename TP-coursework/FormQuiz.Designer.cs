@@ -832,7 +832,7 @@
             this.Controls.Add(this.quiz1);
             this.Controls.Add(this.groupBoxRate1);
             this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MinimumSize = new System.Drawing.Size(780, 480);
             this.Name = "FormQuiz";
             this.Text = "Форма опроса";
