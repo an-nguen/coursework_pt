@@ -37,6 +37,7 @@
             this.maskedFieldName = new TP_coursework.MaskedField();
             this.maskedFieldLastName = new TP_coursework.MaskedField();
             this.maskedFieldWay = new TP_coursework.MaskedField();
+            this.labelHello = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // buttonNext
@@ -77,9 +78,9 @@
             this.labelData.ForeColor = System.Drawing.SystemColors.Control;
             this.labelData.Location = new System.Drawing.Point(143, 158);
             this.labelData.Name = "labelData";
-            this.labelData.Size = new System.Drawing.Size(223, 37);
+            this.labelData.Size = new System.Drawing.Size(357, 37);
             this.labelData.TabIndex = 8;
-            this.labelData.Text = "Ваши данные:";
+            this.labelData.Text = "Укажите ваши данные:";
             // 
             // maskedFieldUniversity
             // 
@@ -189,6 +190,18 @@
             this.maskedFieldWay.TextFieldName = "№ Направления";
             this.maskedFieldWay.TextFont = null;
             // 
+            // labelHello
+            // 
+            this.labelHello.AutoSize = true;
+            this.labelHello.BackColor = System.Drawing.Color.Transparent;
+            this.labelHello.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelHello.ForeColor = System.Drawing.SystemColors.Control;
+            this.labelHello.Location = new System.Drawing.Point(143, 59);
+            this.labelHello.Name = "labelHello";
+            this.labelHello.Size = new System.Drawing.Size(235, 37);
+            this.labelHello.TabIndex = 10;
+            this.labelHello.Text = "Здравствуйте!";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -196,6 +209,7 @@
             this.BackgroundImage = global::TP_coursework.Properties.Resources.ulyanovsk_politeh_blurred;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1008, 687);
+            this.Controls.Add(this.labelHello);
             this.Controls.Add(this.maskedFieldWay);
             this.Controls.Add(this.labelData);
             this.Controls.Add(this.maskedFieldUniversity);
@@ -225,6 +239,7 @@
         private MaskedField maskedFieldUniversity;
         private System.Windows.Forms.Label labelData;
         private MaskedField maskedFieldWay;
+        private System.Windows.Forms.Label labelHello;
     }
 }
 

@@ -22,7 +22,6 @@ namespace TP_coursework
         {
             float res = 0;
             string data = DataLayer.studentInfoToSave.Split(';')[5];
-            this.ResLabel.Text = "Ваш ВУЗ: " + data;
 
             var list = DataLayer.loadFromFileQuiz(data);
             foreach(var i in list)

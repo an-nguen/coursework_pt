@@ -28,6 +28,8 @@ namespace TP_coursework
             maskedFieldLastName.OnLeave += MaskedField_OnLeave;
             maskedFieldName.OnLeave += MaskedField_OnLeave;
             maskedFieldMidName.OnLeave += MaskedField_OnLeave_nreq;
+            maskedFieldLastName.setBackColorAll(Color.Transparent, Color.Aqua, Color.White);
+            maskedFieldMidName.CanBeEmpty = true;
         }
 
         // Метод к которому привязаны события обязательных полей ввода данных
