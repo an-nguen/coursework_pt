@@ -51,7 +51,6 @@
     <Compile Include="FormQuiz.Designer.cs">
       <DependentUpon>FormQuiz.cs</DependentUpon>
     </Compile>
-    <Compile Include="IColorable.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,12 +63,19 @@
     <Compile Include="MaskedField.Designer.cs">
       <DependentUpon>MaskedField.cs</DependentUpon>
     </Compile>
+    <Compile Include="MyEventArgs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ResForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ResForm.Designer.cs">
+      <DependentUpon>ResForm.cs</DependentUpon>
     </Compile>
     <Compile Include="utils\DataLayer.cs" />
     <EmbeddedResource Include="FormQuiz.resx">
@@ -85,6 +91,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResForm.resx">
+      <DependentUpon>ResForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

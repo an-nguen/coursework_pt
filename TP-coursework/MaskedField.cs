@@ -14,35 +14,65 @@ namespace TP_coursework
     /*
         TextField - используем в качестве наименования поля ввода
         MaskedTextBox - используем в качестве поле ввода
-         */
+    */
     public partial class MaskedField : UserControl, INotifyPropertyChanged, IColorable
     {
-        /** Свойства для работы с TextBox **/
-        private string textFieldName;
-        private Color backColorFieldName;
-        private Color foreColor;
-        private Color rootBackColor;
-
-        // Цвет элемента управления - поле наименования
-        [Browsable(true), 
-            Category("Данные"),
-            DefaultValue(typeof(Color), "Gray"),
-            Description("Set default background color of TextBox")]
-        public Color BackColorFieldName
+        /** ----------------------- Конструкторы ----------------------- **/
+        // Конструктор без параметров
+        public MaskedField()
         {
-            get { return backColorFieldName; }
+            InitializeComponent();
+            // Используем его как наименования поля ввода
+            fieldName.ReadOnly = true;
+            // Устанавливаем стандартный цвет эл. textBox.backColor
+            fieldName.ForeColor = this.foreColor;
+            // Устанавливаем стандартный текст textBox
+            fieldName.Text = this.textFieldName;
+        }
+
+        // this() - вызывает конструктор без параметров
+        public MaskedField(string fieldNameValue) : this()
+        {
+            this.textFieldName = fieldNameValue;
+        }
+
+
+        /** ----------------------- Свойства ----------------------- **/
+        /* ----- Собственные свойства ----- */
+        private string textFieldName;
+        private bool onlyLetters;
+
+        // Текст в поле наименования
+        [Browsable(true), Category("Данные"), DefaultValue("default text"),
+            Description("Set default value of TextBox")]
+        public string TextFieldName
+        {
+            get { return textFieldName; }
             set
             {
-                backColorFieldName = value;
+                textFieldName = value;
                 OnPropertyChanged();
             }
         }
 
+        [Browsable(true), Category("Данные"), DefaultValue("default text")]
+        public bool OnlyLetters
+        {
+            get { return onlyLetters; }
+            set
+            {
+                onlyLetters = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /* ----- Вспомогательные свойства ----- */
+        private Color foreColor;
+        private Font textFont;
+
         // Цвет текста в поле наименования
-        [Browsable(true),
-            Category("Данные"),
-            DefaultValue(typeof(Color), "White"),
-            Description("Set default text color of TextBox")]
+        [Browsable(true), Category("Данные"), DefaultValue(typeof(Color), "White"),
+            Description("Set default text color")]
         public Color TextColor
         {
             get { return foreColor; }
@@ -53,38 +83,36 @@ namespace TP_coursework
             }
         }
 
+        [Browsable(true), Category("Данные"), DefaultValue(typeof(Font), "White"),
+             Description("Set default text font")]
+        public Font TextFont
+        {
+            get { return textFont; }
+            set { textFont = value; }
+        }
+
+        /* ----- Сопостовляемые свойства ----- */
+        // Цвет элемента управления - поле наименования
+        [Browsable(true), Category("Данные"), DefaultValue(typeof(Color), "Gray"), 
+            Description("Set default background color of TextBox")]
+        public Color BackColorFieldName
+        {
+            get { return this.fieldName.BackColor; }
+            set { this.fieldName.BackColor = value; }
+        }
+
         // Цвет родительского элемента на которой находится поля
-        [Browsable(true),
-            Category("Данные"),
-            DefaultValue(typeof(Color), "White"),
+        [Browsable(true), Category("Данные"), DefaultValue(typeof(Color), "White"),
             Description("Set default text color of TextBox")]
         public Color RootBackColor
         {
-            get { return rootBackColor; }
-            set
-            {
-                rootBackColor = value;
-                OnPropertyChanged();
-            }
-        }
-
-        // Текст в поле наименования
-        [Browsable(true),
-            Category("Данные"),
-            DefaultValue("default text"),
-            Description("Set default value of TextBox")]
-        public string TextFieldName {
-            get { return textFieldName; }
-            set { textFieldName = value;
-                  OnPropertyChanged();
-                }
+            get { return this.BackColor; }
+            set { this.BackColor = value; }
         }
 
         /** Поля для работы с MaskedTextBox **/
         // Маска поле ввода
-        [Browsable(true),
-            Category("Данные"),
-            Description("Set mask of maskedTextBox")]
+        [Browsable(true), Category("Данные"), Description("Set mask of maskedTextBox")]
         public string InputMaskFormat
         {
             get { return maskedTextBox.Mask; }
@@ -96,47 +124,47 @@ namespace TP_coursework
         public override string Text
         {
             get { return maskedTextBox.Text; }
-            set { maskedTextBox.Text = value; }
+            set {
+                maskedTextBox.Text = value;
+            }
         }
 
-        [Browsable(true),            
-            Category("Данные"),
-            Description("Set AsciiOnly for maskedTextBox")]
-        public bool AsciiOnly
-        {
-            get { return maskedTextBox.AsciiOnly; }
-            set { maskedTextBox.AsciiOnly = value; }
-        }
         public bool MaskCompleted { get { return maskedTextBox.MaskCompleted; } }
 
-        public event EventHandler MaskedTextBoxLeave;
-        public event EventHandler MaskedTextBoxValidating;
-
-        /** Конструкторы **/
-        // Конструктор по-умолчанию
-        public MaskedField()
+        /** ----------------------- Методы ----------------------- **/
+        public void setBackColorAll(Color BackColor,
+                            Color BackColorTextField,
+                            Color BackColorMaskedTextField
+    )
         {
-            InitializeComponent();
-            // Используем его как наименования поля ввода
-            fieldName.ReadOnly = true;
-            // Устанавливаем стандартный цвет эл. textBox.backColor
-            fieldName.ForeColor = this.foreColor;
-            fieldName.BackColor = this.backColorFieldName;
-            this.BackColor = this.rootBackColor;
-            // Устанавливаем стандартный текст textBox
-            fieldName.Text = this.textFieldName;
+            this.BackColor = BackColor;
+            this.fieldName.BackColor = BackColorTextField;
+            this.maskedTextBox.BackColor = BackColorMaskedTextField;
         }
 
-        // this() - вызывает конструктор без параметров
-        public MaskedField(string fieldNameValue) : this()
+        public void setErrorColor(Color BackColorMaskedFieldIfError,
+                                  Color ForeColorMaskedFieldIfError,
+                                  Color BackColorMaskedFieldDefault,
+                                  Color ForeColorMaskedFieldDefault,
+                                  Func<bool> exp)
         {
-            this.textFieldName = fieldNameValue;
+            if (!exp())
+            {
+                this.maskedTextBox.BackColor = BackColorMaskedFieldIfError;
+                this.maskedTextBox.ForeColor = ForeColorMaskedFieldIfError;
+            }
+            else
+            {
+                this.maskedTextBox.BackColor = BackColorMaskedFieldDefault;
+                this.maskedTextBox.ForeColor = ForeColorMaskedFieldDefault;
+            }
         }
 
-        public MaskedField(Color foreColor, Color backColor) : this()
+        private bool isValidField()
         {
-            backColorFieldName = backColor;
-            this.foreColor = foreColor;
+            return
+                (!System.Text.RegularExpressions.Regex.IsMatch(maskedTextBox.Text, @"^[A-Za-zА-Яа-я]+$"))
+                ? false : true;
         }
 
         /** Операции с элементом textBox **/
@@ -154,82 +182,7 @@ namespace TP_coursework
         public void setFieldNameText(string name)
         {
             fieldName.Text = name;
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void OnPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            switch (propertyName)
-            {
-                case "TextFieldName":
-                    setFieldNameText(TextFieldName);
-                    break;
-                case "ForeColorFieldName":
-                    setFieldNameForeColor(TextColor);
-                    break;
-                case "BackColorFieldName":
-                    setFieldNameBackColor(BackColorFieldName);
-                    break;
-                case "RootBackColor":
-                    setBackColor(RootBackColor);
-                    break;
-            }
-        }
-
-
-        /** Методы связанные с maskedTextBox. Геттеры и сеттеры **/
-        // Метод связанный с событием Leave
-        private void maskedTextBox_Leave(object sender, EventArgs e)
-        {
-            if (this.MaskedTextBoxLeave != null)
-                this.MaskedTextBoxLeave(this, e);
-        }
-
-        private void maskedTextBox_Validating(object sender, CancelEventArgs e)
-        {
-            if (this.MaskedTextBoxValidating != null)
-                this.MaskedTextBoxValidating(this, e);
-        }
-
-        public void setBackColorAll(Color BackColor, 
-                                    Color BackColorTextField, 
-                                    Color BackColorMaskedTextField
-            )
-        {
-            this.BackColor = BackColor;
-            this.fieldName.BackColor = BackColorTextField;
-            this.maskedTextBox.BackColor = BackColorMaskedTextField;
-        }
-
-        public void setErrorColor(Color BackColorMaskedFieldIfError,
-                                  Color ForeColorMaskedFieldIfError,
-                                  Color BackColorMaskedFieldDefault,
-                                  Color ForeColorMaskedFieldDefault,
-                                  Func<bool> exp)
-        {
-            if (exp())
-            {
-                this.maskedTextBox.BackColor = BackColorMaskedFieldIfError;
-                this.maskedTextBox.ForeColor = ForeColorMaskedFieldIfError;
-            }
-            else
-            {
-                this.maskedTextBox.BackColor = BackColorMaskedFieldDefault;
-                this.maskedTextBox.ForeColor = ForeColorMaskedFieldDefault;
-            }
-        }
-
-        // Устанавливает цвет фона для родительского элемента
-        public void setBackColor(Color BackColor)
-        {
-            this.BackColor = BackColor;
-        }
-
-        // Получает цвет фона для родительского элемента
-        public Color getBackColor()
-        {
-            return this.BackColor;
+            OnChangedEvent(this, null);
         }
 
         // Устанавливает цвет текста для поле ввода
@@ -254,6 +207,95 @@ namespace TP_coursework
         public Font getFont()
         {
             return this.maskedTextBox.Font;
+        }
+
+
+        /** ----------------------- События ----------------------- **/
+        public delegate void TextOnChangedHandler(object sender, EventArgs args);
+        public delegate void OnLeaveHandler(object sender, Data data);
+
+        public event TextOnChangedHandler OnChanged;
+        public event OnLeaveHandler OnLeave;
+
+        public event EventHandler MaskedTextBoxLeave;
+        public event EventHandler MaskedTextBoxTextChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void OnLeaveEvent(object sender, Data data)
+        {
+            if (OnLeave != null)
+            {
+                this.OnLeave(sender, data);
+            }
+        }
+
+        protected virtual void OnChangedEvent(object sender, EventArgs e)
+        {
+            if (OnChanged != null)
+            {
+                this.OnChanged(sender, e);
+            }
+        }
+
+        private void maskedTextBox_Leave(object sender, EventArgs e)
+        {
+            OnLeaveEvent(sender, new Data(isValidField()));
+
+            if (onlyLetters)
+                setErrorColor(Color.Red, Color.Black, Color.White, Color.Black, isValidField);
+            
+            if (this.MaskedTextBoxLeave != null)
+                this.MaskedTextBoxLeave(this, e);
+        }
+
+        private void maskedTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (this.MaskedTextBoxTextChanged != null)
+                this.MaskedTextBoxTextChanged(this, e);
+        }
+
+        private void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            switch (propertyName)
+            {
+                case "TextFieldName":
+                    setFieldNameText(TextFieldName);
+                    break;
+                case "TextColor":
+                    setFieldNameForeColor(TextColor);
+                    break;
+                case "BackColorFieldName":
+                    setFieldNameBackColor(BackColorFieldName);
+                    break;
+            }
+        }
+    }
+
+    /** ----------------------- Интерфейс ----------------------- **/
+    interface IColorable
+    {
+
+        void setForeColor(Color ForeColor);
+        Color getForeColor();
+
+        void setFont(Font font);
+        Font getFont();
+    }
+
+    public class Data
+    {
+        private bool isValid;
+
+        public bool IsValid
+        {
+            get { return isValid; }
+            set { this.isValid = value; }
+        }
+
+        public Data() { }
+        public Data(bool v)
+        {
+            this.isValid = v;
         }
     }
 }

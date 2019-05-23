@@ -10,6 +10,7 @@ namespace TP_coursework
     {
         public static MainForm form0;
         public static FormQuiz form1;
+        public static ResForm form2;
 
         /// <summary>
         /// Главная точка входа для приложения.
@@ -21,6 +22,7 @@ namespace TP_coursework
             Application.SetCompatibleTextRenderingDefault(false);
             form0 = new MainForm();
             form1 = new FormQuiz();
+            form2 = new ResForm();
             Application.Run(form0);
         }
     }

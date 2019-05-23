@@ -25,7 +25,28 @@ namespace TP_coursework
             maskedFieldLastName.MaskedTextBoxLeave += MaskedField_MaskedTextBoxLeave;
             maskedFieldName.MaskedTextBoxLeave += MaskedField_MaskedTextBoxLeave;
             maskedFieldMidName.MaskedTextBoxLeave += MaskedField_MaskedTextBoxLeave_nreq;
+            maskedFieldLastName.OnLeave += MaskedField_OnLeave;
+            maskedFieldName.OnLeave += MaskedField_OnLeave;
+            maskedFieldMidName.OnLeave += MaskedField_OnLeave_nreq;
         }
+
+        // Метод к которому привязаны события обязательных полей ввода данных
+        private void MaskedField_OnLeave(object sender, Data data)
+        {
+            reqFieldsIsValid = data.IsValid;
+        }
+        // Метод к которому привязаны события необязательных полей ввода данных
+        private void MaskedField_OnLeave_nreq(object sender, Data data)
+        {
+            if (!(sender is MaskedTextBox)) return;
+
+            MaskedTextBox field = sender as MaskedTextBox;
+            if (!string.IsNullOrEmpty(field.Text))
+                nreqFieldsIsValid = data.IsValid;
+            else
+                nreqFieldsIsValid = true;
+        }
+
 
         // Метод проверяет поля ввода данных на пустоту строк
         private bool fieldsIsEmpty()
@@ -33,7 +54,8 @@ namespace TP_coursework
             if (string.IsNullOrEmpty(maskedFieldLastName.Text) |
                 string.IsNullOrEmpty(maskedFieldName.Text) |
                 string.IsNullOrEmpty(maskedFieldUniversity.Text) |
-                !maskedFieldPhone.MaskCompleted)
+                !maskedFieldWay.MaskCompleted |
+                !maskedFieldCourse.MaskCompleted)
                 return true;
             else
                 return false;
@@ -48,32 +70,16 @@ namespace TP_coursework
                 ? false : true;
         }
 
-        // Метод к которому привязаны события обязательных полей ввода данных
-        private void MaskedField_MaskedTextBoxLeave(object sender, EventArgs e)
-        {
-            if (!(sender is MaskedField)) return;
+        private void MaskedField_MaskedTextBoxLeave(object sender, EventArgs e) { }
 
-            MaskedField field = sender as MaskedField;
-            reqFieldsIsValid = isValidField(field.Text);
-        }
-
-        // Метод к которому привязаны события необязательных полей ввода данных
-        private void MaskedField_MaskedTextBoxLeave_nreq(object sender, EventArgs e)
-        {
-            if (!(sender is MaskedField)) return;
-
-            MaskedField field = sender as MaskedField;
-            if (!string.IsNullOrEmpty(field.Text))
-                nreqFieldsIsValid = isValidField(field.Text);
-            else
-                nreqFieldsIsValid = true;
-        }
+        private void MaskedField_MaskedTextBoxLeave_nreq(object sender, EventArgs e) { }
 
         // Данные студента которые потом сохраним в файл
         public void setStudentInfo()
         {
             DataLayer.studentInfoToSave = maskedFieldLastName.Text + ';' + maskedFieldName.Text + ';' +
-                maskedFieldMidName.Text + ';' + maskedFieldPhone.Text + ';' + maskedFieldUniversity.Text + ';';
+                maskedFieldMidName.Text + ';' + maskedFieldWay.Text + ';' + maskedFieldCourse.Text + ';' 
+                + maskedFieldUniversity.Text + ';';
         }
 
         /** События **/
@@ -84,7 +90,7 @@ namespace TP_coursework
 
         private void ButtonNext_Click(object sender, EventArgs e)
         {
-            if (!fieldsIsEmpty() & reqFieldsIsValid)
+            if (!fieldsIsEmpty() & reqFieldsIsValid & nreqFieldsIsValid)
             {
                 setStudentInfo();
                 this.Hide();

@@ -53,8 +53,8 @@
             this.maskedTextBox.Name = "maskedTextBox";
             this.maskedTextBox.Size = new System.Drawing.Size(190, 26);
             this.maskedTextBox.TabIndex = 1;
+            this.maskedTextBox.TextChanged += new System.EventHandler(this.maskedTextBox_TextChanged);
             this.maskedTextBox.Leave += new System.EventHandler(this.maskedTextBox_Leave);
-            this.maskedTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.maskedTextBox_Validating);
             // 
             // MaskedField
             // 

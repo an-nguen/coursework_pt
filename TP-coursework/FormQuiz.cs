@@ -28,7 +28,9 @@ namespace TP_coursework
             appendQuizInfo();
             DataLayer.saveToFile();
             MessageBox.Show("Спасибо за уделённое вами время на опрос!");
-            this.Close();
+            this.Hide();
+            Program.form2.FormClosed += (s, args) => this.Close();
+            Program.form2.Show();
         }
 
         private void ButtonBack_Click(object sender, EventArgs e)
