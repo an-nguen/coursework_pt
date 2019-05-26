@@ -27,22 +27,24 @@ namespace TP_coursework.utils
             writer.Close();
         }
 
-        public static List<string> loadFromFileQuiz(string univer) 
+        public static List<List<string>> loadFromFileQuiz(string univer) 
         {
             var file = File.Exists(pathfile) ? File.Open(pathfile, FileMode.Append) : File.Open(pathfile, FileMode.CreateNew);
             file.Close();
             StreamReader reader = new StreamReader(pathfile);
             string line;
-            List<string> data = new List<string>();
+            List<List<string>> data = new List<List<string>>();
 
             while ((line = reader.ReadLine()) != null)
             {
                 if (univer == line.Split(';')[5])
                 {
+                    List<string> item = new List<string>();
                     for(int i = 6; i <= 13; i++)
                     {
-                        data.Add(line.Split(';')[i]);
+                        item.Add(line.Split(';')[i]);
                     }
+                    data.Add(item);
                 }
             }
 

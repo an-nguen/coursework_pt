@@ -20,16 +20,31 @@ namespace TP_coursework
 
         private void ResForm_Load(object sender, EventArgs e)
         {
-            float res = 0;
+            List<float> res = new List<float>()
+            {
+                0, 0, 0, 0, 0, 0, 0, 0
+            };
             string data = DataLayer.studentInfoToSave.Split(';')[5];
 
             var list = DataLayer.loadFromFileQuiz(data);
-            foreach(var i in list)
+            foreach(var item in list)
             {
-                res += int.Parse(i);
+                for (int j = 0; j < item.Count; j++) {
+                    res[j] += int.Parse(item[j]);
+                }
             }
-            res /= list.Count;
-            this.r1.Text = res.ToString();
+            for (int i = 0; i < res.Count; i++)
+            {
+                res[i] /= list.Count;
+            }
+            this.r1.Text = res[0].ToString();
+            this.r2.Text = res[1].ToString();
+            this.r3.Text = res[2].ToString();
+            this.r4.Text = res[3].ToString();
+            this.r5.Text = res[4].ToString();
+            this.r6.Text = res[5].ToString();
+            this.r7.Text = res[6].ToString();
+            this.r8.Text = res[7].ToString();
         }
 
         private void ButtonEnd_Click(object sender, EventArgs e)
